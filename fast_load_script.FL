@@ -1,0 +1,23 @@
+.LOGON 10.58.0.66/td_user23,td_user23;
+DATABASE TD_BIM_FR_TRNG_DB;
+BEGIN LOADING Employee_Stg_34
+ERRORFILES rad_Employee_ET, rad_Employee_UV
+CHECKPOINT 10;
+SET RECORD VARTEXT ",";
+DEFINE 
+in_EmployeeNo (VARCHAR(10)) ,
+in_FirstName (VARCHAR(30)) , 
+in_LastName (VARCHAR(30)) ,
+in_BirthDate (VARCHAR(10)) , 
+in_JoinedDate (VARCHAR(10)) ,
+in_DepartmentNo (VARCHAR(2)), 
+FILE=c:\teradata\emp.txt;
+INSERT INTO Employee_Stg_34 VALUES( 
+:in_EmployeeNo , 
+:in_FirstName ,
+:in_LastName , 
+:in_BirthDate (FORMAT 'YYYY-MM-DD'),
+:in_JoinedDate (FORMAT 'YYYY-MM-DD'), 
+:in_DepartmentNo );
+END LOADING;
+LOGOFF;

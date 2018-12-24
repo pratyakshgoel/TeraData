@@ -1,0 +1,16 @@
+.LOGTABLE pg_employee_log;  
+.LOGON 10.58.0.66/td_user23,td_user23;  
+   .BEGIN EXPORT SESSIONS 2;  
+      .EXPORT OUTFILE c:\employee_data.txt  
+      MODE RECORD FORMAT TEXT;
+      SELECT CAST(EmployeeNo AS CHAR(10)), 
+         CAST(FirstName AS CHAR(30)), 
+         CAST(LastName AS CHAR(30)), 
+         CAST(BirthDate AS CHAR(10))   
+      FROM
+      pg_Employee_stg10;
+   .END EXPORT;
+.LOGOFF;
+
+
+3:38 PM 12/22/2018

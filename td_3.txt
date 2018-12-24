@@ -1,0 +1,28 @@
+.logon 10.58.0.66/td_user23,td_user23
+.import file = C:\TeraData\emp.txt;
+
+using
+
+employeeNo (varchar(6)),
+first_name (varchar(25)),
+last_name (varchar(20)),
+birth_date (varchar(25)),
+join_date (varchar(25)),
+dept_no (varchar(25));
+
+
+insert into tbl_emp_bteq
+values
+(
+:employeeNo,
+:first_name,
+:las_name,
+:birth_date,
+:join_date,
+:dept_no
+);
+
+.quit
+
+.logoff
+.exit

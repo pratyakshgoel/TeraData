@@ -1,0 +1,18 @@
+.LOGON 10.58.0.66/td_user24,td_user24;
+.IMPORT VARTEXT ',' FILE=Test(2).TXT;
+.REPEAT *
+USING 
+Row_ID (VARCHAR(30)),
+XMLCol (VARCHAR(30))
+
+INSERT INTO EMPLOYEE_161158_BTEQ
+values
+(
+:Row_ID,
+:XMLCol
+);
+
+.QUIT;
+
+
+

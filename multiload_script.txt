@@ -1,0 +1,60 @@
+.LOGTABLE pg_EMP_STG_LT1;
+ LOGON 10.58.0.66/td_user23,td_user23;
+.BEGIN IMPORT MLOAD
+ TABLES      pg_EMPLOYEE_STG10,pg_EMPLOYEE_STG20
+ WORKTABLES  pg_EMPLOYEE_WT1,pg_EMPLOYEE_WT2
+ ERRORTABLES pg_EMPLOYEE_ET1 pg_EMPLOYEE_UV1,
+ pg_EMPLOYEE1_ET1 pg_EMPLOYEE1_UV1 ;
+
+.LAYOUT pg_EMPLOYEE_STG;
+.FIELD in_EmployeeNo * VARCHAR(10);
+.FIELD in_FirstName * VARCHAR(30);
+.FIELD in_LastName * VARCHAR(30);
+.FIELD in_BirthDate * VARCHAR(10);
+.FIELD in_JoinedDate * VARCHAR(10);
+.FIELD in_DepartmentNo * VARCHAR(02);
+
+ .DML LABEL pg_EMPLOYEE_STG10 ;
+
+ INSERT INTO pg_EMPLOYEE_STG10 VALUES
+ (:in_EmployeeNo,
+  :in_FirstName,
+  :in_Lastname,
+  :in_BirthDate, 
+  :in_JoinedDate,
+  :in_DepartmentNo);
+
+
+ .DML LABEL pg_EMPLOYEE_STG20 ;
+
+ INSERT INTO pg_EMPLOYEE_STG20 VALUES
+ (:in_EmployeeNo,
+  :in_FirstName,
+  :in_Lastname,
+  :in_BirthDate, 
+  :in_JoinedDate,
+  :in_DepartmentNo);
+
+.IMPORT INFILE emp.txt
+
+  LAYOUT pg_EMPLOYEE_STG
+
+  FORMAT VARTEXT ','
+
+  APPLY pg_EMPLOYEE_STG10
+
+  APPLY pg_EMPLOYEE_STG20;
+
+ .END MLOAD;
+
+ .LOGOFF;
+
+
+
+
+
+
+
+
+
+3:04 PM 12/22/2018

@@ -1,0 +1,28 @@
+.LOGON 10.74.161.248/td_user20,td_user20;
+.IMPORT VARTEXT ',' FILE=EMP.TXT;
+.REPEAT *
+USING 
+empLOYEENO (VARCHAR(6)),
+FIRST_NAME (VARCHAR(25)),
+LAST_NAME (VARCHAR(25)),
+BIRTHDATE (VARCHAR(25)),
+JOINDATE  (VARCHAR(25)),
+DEPTNO  (VARCHAR(25))
+
+INSERT INTO EMPLOYEE_BTEQ 
+values
+(
+:costCenterID,
+:bankSectorCd,
+:bankruptcyStartDt,
+:bankcruptcyProcessEndDt,
+:JOINDATE,
+:DEPTNO 
+);
+
+.QUIT;
+
+
+10:25 AM 11/10/2018
+
+11:39 AM 11/12/2018
